@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+{% endblock header %}
+
+{% block service %}
+{% endblock service %}
+
+{% block new_cars %}
+{% endblock new_cars %}
+
+{% block main %}
+
+<div class="container">
+    <a href="{% url 'index' %}"><h2 style="margin-top:50px;">Home</h2></a>
+
+    {% if user.is_authenticated %}
+    {% if user.is_superuser %}
+    <a style="margin-left:420px;" href="{% url 'create_car' %}"><h2 style="margin-top:50px;">car_qo'shish</h2></a>
+    {% endif %}
+    <a style="margin-left:20px;" href="{% url 'logout' %}"><h2 style="margin-top:50px;">Logout</h2></a>
+    {% else %}
+    <a style="margin-left:420px;" href="{% url 'login' %}"><h2 style="margin-top:50px;">Login</h2></a>
+    <a style="margin-left:70px;" href="{% url 'register' %}"><h2 style="margin-top:50px;">Register</h2></a>
+    {% endif %}
+
+    <div class="lidrimg">
+        <div class="lidrimg2">
+            <img src="{{ car.image.url }}" alt="{{ car.brand.name }} {{ car.model_name }}">
+            <p>Shahar: {{ car.city }}</p>
+            <p>Telefon: {{ car.phone }}</p>
+            <p>Dvigitel hajmi, l: {{ car.engine_volume }}</p>
+            <p>Kilometrlar: {{ car.kilometers }}</p>
+            <p>Yaratilgan sana: {{ car.created_at }}</p>
+            <p>Qo'shimcha tavsif: {{ car.description }}</p>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="car-detail-info">
+                <p>{{ car.brand }} {{ car.model_name }}</p>
+                <p>Yili: {{ car.year }}</p>
+                <p>Rangi: {{ car.color }}</p>
+                <p>Narxi: ${{ car.price }}</p>
+                <p>Boshqaruvi: {{ car.scor }}</p>
+                <p>Kuzovi: {{ car.body }}</p>
+                <p><h3>Ko'rishlar soni: {{ car.views }}</h3></p>
+                {% if user.is_authenticated and user.is_superuser %}
+                <a href="{% url 'update_car' car.id %}"><h3>Edit</h3></a>
+                <span><a href="{% url 'delete_car' car.id %}"><h3>Delete</h3></a></span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="comments-section">
+        <h2>Comments</h2>
+        {% for comment in comments %}
+        <div class="comment">
+            <p><strong>{{ comment.user.username }}</strong> said:</p>
+            <p>{{ comment.text }}</p>
+            <p><small>{{ comment.created_at }}</small></p>
+        </div>
+        {% empty %}
+        <p>No comments yet.</p>
+        {% endfor %}
+
+        <h3>Izoh qoldiring</h3>
+        {% if user.is_authenticated %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button style="width:150px; height:30px; background-color:yellow; color:black;" type="submit">Saqlash</button>
+        </form>
+        {% else %}
+        <p><h6> Izoh qoldirish uchun <a href="{% url 'login' %}">LOGIN</a> qilib kiring</h6></p>
+        {% endif %}
+    </div>
+    <hr>
+    <div class="similar-cars">
+        <h2>Shu modeldagi boshqa e'lonlar</h2>
+        <div class="row">
+            {% for similar_car in similar_cars %}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="single-featured-cars">
+                    <div class="featured-img-box">
+                        <div class="featured-cars-img">
+                            <img src="{{ similar_car.image.url }}" alt="{{ similar_car.brand.name }} {{ similar_car.model_name }}">
+                        </div>
+                        <div class="featured-model-info">
+                            <p>yili: {{ similar_car.year }} rangi {{ similar_car.color }}</p>
+                        </div>
+                    </div>
+                    <div class="featured-cars-txt">
+                        <h2><a href="{% url 'car_detail' similar_car.id %}">{{ similar_car.brand.name }} {{ similar_car.model_name }}</a></h2>
+                        <h3>${{ similar_car.price }}</h3>
+                        <p>Qolgan malumotlarni olish uchun avtomobil nomini ustiga bosing</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock main %}
+
+{% block testimonial %}
+{% endblock testimonial %}

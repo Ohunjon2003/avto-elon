@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+
+
+
+{% block service %}
+{% endblock service %}
+
+{% block new_cars %}
+{% endblock new_cars %}
+
+
+{% block main %}
+<h2>{% if form.instance.pk %}Edit Car{% else %}Add Car{% endif %}</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button  style="width:150px; height:30px; background-color:yellow; color:black;" type="submit">{% if form.instance.pk %}Update{% else %}Create{% endif %}</button>
+</form>
+{% endblock main %}
+
+
+
+{% block testimonial %}
+{% endblock testimonial %}

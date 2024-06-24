@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+
+{% block main %}
+
+<section id="brand" class="brand">
+    <div class="container">
+        <div class="brand-area">
+            <div class="owl-carousel owl-theme brand-item">
+                {% for brand in brands %}
+                <div class="item">
+                    <a href="{% url 'brand_cars' brand.id %}">
+                        {% if brand.brand_logo %}
+                        <img src="{{ brand.brand_logo.url }}" alt="{{ brand.name }} logo" />
+                        {% else %}
+                        <img src="{% static 'assets/images/default_logo.png' %}" alt="{{ brand.name }} logo" />
+                        {% endif %}
+                    </a>
+                    <p>{{ brand.name }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="cars" class="cars">
+    <div class="container">
+        <div class="row">
+            {% for car in cars %}
+            <div class="col-md-4">
+                <div class="card">
+                    <a href="{% url 'car_detail' car.id %}"><img style="width:350px; height:320px; margin-top:80px;" class="card-img-top" src="{{ car.image.url }}" alt="{{ car.model_name }}"></a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ car.brand.name }} {{ car.model_name }}</h5>
+                        <p class="card-text">yili:{{ car.year }}</p>
+                        <p class="card-text">rangi:{{ car.color }}</p>
+                        <a href="{% url 'car_detail' car.id %}" class="btn btn-primary">Batafsil ko'rish</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block main %}
+
+{% block header %}
+{% endblock header %}
+
+
+{% block service %}
+{% endblock service %}
+
+{% block new_cars %}
+{% endblock new_cars %}
+
+
+
+<h2>Delete Car</h2>
+<p>Haqiqatdan ham bu  "{{ car.brand }} - {{ car.model_name }}"mashinani o'chirmoqchimisiz?</p>
+<form method="post">
+    {% csrf_token %}
+    <button  style="width:150px; height:30px; background-color:yellow; color:black;" type="submit">Delete</button>
+</form>
+{% endblock main %}
+
+
+
+{% block testimonial %}
+{% endblock testimonial %}
+

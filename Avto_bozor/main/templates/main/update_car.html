@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block main %}
+
+
+
+
+
+
+
+{% block header %}
+{% endblock header %}
+
+
+{% block service %}
+{% endblock service %}
+
+{% block new_cars %}
+{% endblock new_cars %}
+
+
+
+
+
+
+
+<h2>Edit Car</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button style="width:150px; height:30px; background-color:yellow; color:black;" type="submit">Update Car</button>
+</form>
+{% endblock %}
+
+
+
+{% block testimonial %}
+{% endblock testimonial %}

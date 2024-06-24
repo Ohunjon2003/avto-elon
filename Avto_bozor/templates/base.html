@@ -1,0 +1,87 @@
+
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <!-- meta data -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- title of site -->
+    <title>Avto-road</title>
+    <!--font-family-->
+   {% include 'components/_styles.html' %}
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+<!--[if lte IE 9]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+<![endif]-->
+{% block header %}
+<!--welcome-hero start -->
+{% include 'components/_header.html' %}
+{% endblock header %}
+
+
+
+<!--welcome-hero end -->
+{% block service %}
+<!--service start -->
+{% include 'components/_service.html' %}
+<!--service end-->
+{% endblock service %}
+
+
+{% block new_cars %}
+<!--new-cars start -->
+{% include 'components/_new_cars.html' %}
+<!--new-cars end -->
+{% endblock new_cars %}
+<!--featured-cars start -->
+
+{% block main %}
+{% endblock main %}
+<!--featured-cars end -->
+
+
+
+{% block testimonial %}
+<!-- clients-say strat -->
+{% include 'components/_testimonial.html' %}
+<!-- clients-say end -->
+{% endblock testimonial %}
+
+
+{% block brand_logo %}
+<!--brand strat -->
+
+{% include 'components/_brand_logo.html' %}
+<!--brand end -->
+{% endblock brand_logo %}
+
+
+<!--blog start -->
+<section id="blog" class="blog"></section><!--/.blog-->
+<!--blog end -->
+
+<!--contact start-->
+{% include 'components/_footer.html' %}
+<!--contact end-->
+
+
+
+<!-- Include all js compiled plugins (below), or include individual files as needed -->
+{% include 'components/_scripts.html' %}
+</body>
+
+</html>

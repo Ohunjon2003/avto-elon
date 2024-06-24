@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+{% block service %}
+{% endblock service %}
+
+{% block new_cars %}
+{% endblock new_cars %}
+
+
+{% block main %}
+<section id="brand-cars">
+
+    <div class="container">
+        <div class="row">
+            {% for car in cars %}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="single-featured-cars">
+                    <div class="featured-img-box">
+                        <div class="featured-cars-img">
+                            <a href="{% url 'car_detail' car.id %}"><img src="{{ car.image.url }}" alt="{{ car.brand.name }} {{ car.model_name }}"></a>
+                        </div>
+                        <div class="featured-model-info">
+                            <p>yili: {{ car.year }} rangi {{ car.color }}</p>
+                        </div>
+                    </div>
+                    <div class="featured-cars-txt">
+                        <h2><a href="{% url 'car_detail' car.id %}">{{ car.brand.name }} {{ car.model_name }}</a></h2>
+                        <h3>${{ car.price }}</h3>
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
